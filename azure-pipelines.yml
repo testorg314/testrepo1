@@ -1,0 +1,23 @@
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+variables:
+  RAILS_ENV: test
+  MYSQL_PWD: root
+  BUNDLE_PATH: vendor/bundle
+
+steps:
+- script: |
+    curl -fsSL https://testspace-client.s3.amazonaws.com/testspace-linux-dev.tgz | sudo tar -zxvf- -C /usr/local/bin
+    testspace config url 9259a4a2.ngrok.io
+  displayName: Install Testspace client
+
+- script: testspace [Tests]tmp/rspec.xml{spec}
+  condition: always()
+  displayName: Push results to Testspace- script: |
+
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testResultsFiles: 'tmp/rspec.xml'
+    testRunTitle: 'Tests'
