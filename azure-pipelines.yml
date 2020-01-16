@@ -12,7 +12,7 @@ steps:
     testspace config url http://ff6ad81e.ngrok.io
   displayName: Install Testspace client
 
-- script: testspace [Tests]tmp/rspec.xml{spec}
+- script: testspace [Tests]tmp/rspec.xml
   condition: always()
   displayName: Push result to testspace
 
