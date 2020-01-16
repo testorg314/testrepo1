@@ -9,7 +9,7 @@ variables:
 steps:
 - script: |
     curl -fsSL https://testspace-client.s3.amazonaws.com/testspace-linux-dev.tgz | sudo tar -zxvf- -C /usr/local/bin
-    testspace config url https://9259a4a2.ngrok.io
+    testspace config url http://ff6ad81e.ngrok.io
   displayName: Install Testspace client
 
 - script: testspace [Tests]tmp/rspec.xml{spec}
